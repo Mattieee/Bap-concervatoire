@@ -3,8 +3,8 @@ require TEMPLATEPATH.'/framework/theme.php';
 $theme = new Theme(array(
 	'menus' => array(
 		'nav' => 'Navigation'
-		)
-	));
+	)
+));
 
 
 
@@ -43,102 +43,94 @@ require_once('wp_bootstrap_navwalker.php');
 
 
  		'primaire'=> __('Barre de menu du thème','test')	
- 		) 
+ 	) 
+ );
+
+ function arphabet_widgets_init() {
+
+ 	register_sidebar( array(
+ 		'name' => 'Home right sidebar',
+ 		'id' => 'home_right_1',
+ 		'before_widget' => '<div>',
+ 		'after_widget' => '</div>',
+ 		'before_title' => '<h2 class="rounded">',
+ 		'after_title' => '</h2>',
+ 	) );
+ }
+ add_action( 'widgets_init', 'arphabet_widgets_init' );
+
+
+
+
+ function load_my_script(){
+ 	wp_register_script(
+ 		'slick',
+ 		get_template_directory_uri() . '/js/slick/slick.js',
+ 		array( 'jquery' )
  	);
+ 	wp_enqueue_script( 'slick' );
 
-	function arphabet_widgets_init() {
+ 	wp_register_script(
+ 		'speakers',
+ 		get_template_directory_uri() . '/js/speakers.js',
+ 		array( 'jquery' )
+ 	);
+ 	wp_enqueue_script( 'speakers' );
+ 	wp_enqueue_script( 'foggy' );
+ }
 
-		register_sidebar( array(
-			'name' => 'Home right sidebar',
-			'id' => 'home_right_1',
-			'before_widget' => '<div>',
-			'after_widget' => '</div>',
-			'before_title' => '<h2 class="rounded">',
-			'after_title' => '</h2>',
-		) );
-	}
-	add_action( 'widgets_init', 'arphabet_widgets_init' );
+ add_action('wp_enqueue_scripts', 'load_my_script');
 
-	wp_enqueue_style( 'speackers', get_template_directory_uri() . '/css/spearckers.css' );
+ function init_speakers_list($atts, $content = null ){
+ 	$atts = shortcode_atts(
+ 		array(
+ 			'slug' => "",
+ 		), $atts);
+ 	$html = '';
+ 	$terms = get_terms($atts);
+ 	if( !empty($terms) ){
+ 		$term = $terms[0];
 
-	wp_enqueue_style( 'slick', get_template_directory_uri() . '/js/slick/slick.css' );
-	wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/js/slick/slick-theme.css' );
-
-	function load_my_script(){
-		wp_register_script(
-			'slick',
-			get_template_directory_uri() . '/js/slick/slick.js',
-			array( 'jquery' )
-		);
-		wp_enqueue_script( 'slick' );
-
-		wp_register_script(
-			'speakers',
-			get_template_directory_uri() . '/js/speakers.js',
-			array( 'jquery' )
-		);
-		wp_enqueue_script( 'speakers' );
-
-		wp_register_script(
-			'foggy',
-			get_template_directory_uri() . '/js/jquery.foggy.min.js',
-			array( 'jquery' )
-		);
-		wp_enqueue_script( 'foggy' );
-	}
-
-	add_action('wp_enqueue_scripts', 'load_my_script');
-
-	function init_speakers_list($atts, $content = null ){
-		$atts = shortcode_atts(
-			array(
-				'slug' => "",
-			), $atts);
-		$html = '';
-		$terms = get_terms($atts);
-		if( !empty($terms) ){
-			$term = $terms[0];
-
-			$posts_array = get_posts(array(
-				'post_type' => 'team_member',
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'team_group',
-						'field' => 'term_id',
-						'terms' => $term->term_id
-					)
-				)
-			));
+ 		$posts_array = get_posts(array(
+ 			'post_type' => 'team_member',
+ 			'tax_query' => array(
+ 				array(
+ 					'taxonomy' => 'team_group',
+ 					'field' => 'term_id',
+ 					'terms' => $term->term_id
+ 				)
+ 			)
+ 		));
 
 
-			$html .= '<div class="title-speackers">Speakers</div>';
-			$html .= '<div class="speacker-wrapper-content">';
-			foreach($posts_array as $post){
-				$html .= '<div class="row-speacker">';
-					$html .= '<div class="image-wrapper-r">';
-					$html .= get_the_post_thumbnail( $post->ID , $size = [
-						500,500
-					]);
-					$html .= '</div>';
-					$html .= '<div class="title-wrapper">';
-						$html .= get_the_title( $post->ID );
-					$html .= '</div>';
-					$html .= '<div class="content-wrapper">';
-						$html .= $post->post_content;
-					$html .= '</div>';
+ 		$html .= '<div class="title-speackers">Speakers</div>';
+ 		$html .= '<div class="speacker-wrapper-content">';
+ 		foreach($posts_array as $post){
+ 			$html .= '<div class="row-speacker">';
+ 			$html .= '<div class="image-wrapper-r">';
+ 			$html .= get_the_post_thumbnail( $post->ID , $size = [
+ 				500,500
+ 			]);
+ 			$html .= '</div>';
+ 			$html .= '<div class="title-wrapper">';
+ 			$html .= get_the_title( $post->ID );
+ 			$html .= '</div>';
+ 			$html .= '<div class="content-wrapper">';
+ 			$html .= $post->post_content;
+ 			$html .= '</div>';
 
 
-					$html .= '<div class="btn-wrapper-conference">
-						<a href="#">
-							Découvrir les conférence de ' . get_the_title( $post->ID ) . '
-						</a>
-					</div>';
+ 			$html .= '<div class="btn-wrapper-conference">
+ 			<a href="#">
+ 			Découvrir les conférence de ' . get_the_title( $post->ID ) . '
+ 			</a>
+ 			</div>';
 
-				$html .= '</div>';
-			}
-			$html .= '</div>';
-		}
-		return $html;
-	}
-	add_shortcode( 'speackers_list', 'init_speakers_list' );
-?>
+ 			$html .= '</div>';
+ 		}
+ 		$html .= '</div>';
+ 	}
+ 	return $html;
+ }
+ add_shortcode( 'speackers_list', 'init_speakers_list' );
+ ?>
