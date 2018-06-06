@@ -1,15 +1,3 @@
-
-
-
-
-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 circle {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
@@ -23,11 +11,6 @@ circle {
 
 
 
-
-image {
-  /**filter: blur(3px);**/
-}
-
 .items5 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,13 +23,10 @@ image {
 }
 
 .item5 {
-
   background-image: url("../img/slider1.jpg");
-
   width: 100%;
   height: 800px;
-  /*cursor: pointer;*/
-  
+  /*cursor: pointer;*/ 
   background-repeat:no-repeat;
   background-attachment:scroll;
   background-position:center center;
@@ -60,13 +40,11 @@ image {
   transform: translateZ(0);
 }
 
-
 .item5:hover circle,
 .item5:hover image {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-
 
 @media (max-width: 768px) {
   .item5{
@@ -83,4 +61,53 @@ image {
   .bouton1{
     margin-top:-150px;
   }
+}
+
+.titre1{
+  text-align:center;
+  padding-top:50px;
+}
+
+@media (max-width: 768px){
+  .titre2{
+    padding-top:120px;
+    font-size:24px;
+  }
+}
+
+.titre2{
+  text-align:center;
+  padding-top:50px;
+  color:white;
+}
+
+@media (max-width: 768px){
+  .titre1{
+    padding-top:120px;
+    font-size:24px;
+  }
+}
+
+.img_logo{
+  padding-right: 280px;
+  padding-left: 280px;
+}
+
+@media (max-width: 768px){
+  .img_logo{
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 768px){
+  .text-center{
+    font-size: 13px;
+  }
+}
+
+.trouver-nous{
+  margin-top: 100px;
+  background-color: #659966;
+  height:300px;
 }

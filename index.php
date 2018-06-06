@@ -9,40 +9,6 @@ get_header();
 
 <!-- Accueil -->
 
-<!--<div style="padding-top: 80px;" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-	</ol>
-	<div class="carousel-inner">
-		
-		<div class="carousel-item active">
-			<div class="items5">
-				<img class="item5" alt="First slide">
-			</div>
-		</div>
-		<div class="carousel-item active">
-			<div class="carousel-item">
-				<img class="item5"  alt="Second slide">
-			</div>
-		</div>
-		<div class="carousel-item">
-			<img class="item5"  alt="Third slide">
-		</div>
-		
-	</div>
-	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
-</div>-->
-
-
 <header class="masthead" >
 
 	<div style="padding-top: 80px;" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -88,7 +54,7 @@ get_header();
 		</a>
 
 		<div class="bouton1 col-md-12" >
-			<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+			<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">En savoir plus</a>
 		</div>
 
 		<div class="intro-text col-md-12" style="position: absolute; top:20%;" >
@@ -102,6 +68,29 @@ get_header();
 
 	</div>
 </header>
+
+<div class="qui-somme-nous">
+
+	<h2 class="titre1">Qui sommes nous ?</h2>
+	<img class="img_logo col-md-12" src="<?php echo get_template_directory_uri();?>/img/logo11.png">
+
+	<p class="text-center" style="padding-left:10px;padding-right:10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus voluptatum exercitationem, <br>iure eveniet temporibus pariatur cumque reprehenderit, corporis natus perspiciatis<br> repellat officia veritatis magnam facere. Id odit natus voluptatibus maiores?</p>
+
+	
+</div>
+
+<div class="Gallerie">
+
+
+</div>
+
+<div class="trouver-nous">
+
+	<h2 class="titre2">Où nous trouver ?</h2>
+
+	
+
+</div>
 
 
 
